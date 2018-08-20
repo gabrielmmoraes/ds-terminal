@@ -69,7 +69,7 @@ int main(){
   
   // add_command((unsigned long int) func_pointer, call of the func inside terminal, num of arguments)
   add_command((unsigned long int) &pop, "pop", 0);
-  add_command((unsigned long int) &pop, "push", 0);  
+  add_command((unsigned long int) &pop, "push", 1);  
   
   return 0;
 }
@@ -84,7 +84,7 @@ int main(){
   Stack* pointer_to_stack = createStack(size);
   
   add_command((unsigned long int) &pop, "pop", 0); 
-  add_command((unsigned long int) &pop, "push", 0); 
+  add_command((unsigned long int) &pop, "push", 1); 
   
   init_terminal(pointer_to_stack);
   
