@@ -29,7 +29,6 @@ void initTerminal(unsigned long int structureAddress){
   char str[28];
   char command[15];
   char argument[10];
-  _Bool start_argument_declaration = FALSE;
 
   infinite_loop: {   
     uint8_t i = 0;
@@ -64,9 +63,8 @@ void initTerminal(unsigned long int structureAddress){
     }
     
     n = atoi(argument);
-    
-    execute_command:
-      executeCommand(structureAddress, command, n);
+
+    executeCommand(structureAddress, command, n);
 
     goto infinite_loop;
   }
