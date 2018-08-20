@@ -77,7 +77,8 @@ Obs.: Up until now you can only call functions of one int argument or none, so u
 int main(){
   Stack* stack_pointer = createStack(2);
   
-  add_command((unsigned long int) &pop, "pop", 0);  
+  add_command((unsigned long int) &pop, "pop", 0); 
+  add_command((unsigned long int) &pop, "push", 0); 
   
   init_terminal(stack);
   
@@ -94,7 +95,7 @@ gcc /path/to/terminal.c main.c -o dsterminal
 7. Run the executable (example running below can be checked [here](https://github.com/gabrielmmoraes/data-structures)).
 
 ```
-gabrielmmoraes@pc:~/Projects/data_structures/stack$ ./stack 2
+gabrielmmoraes@pc:~/Projects/data-structures/stack$ ./stack 2
 >> push(3)
 [3]
 >> push(4)
@@ -114,7 +115,7 @@ Obs.: All function calls must have parenthesis, even if it does not need any arg
 8. Exit with Ctrl+C or quit() command (native function).
 
 ```
-gabrielmmoraes@pc:~/Projects/data_structures/stack$ ./stack 2
+gabrielmmoraes@pc:~/Projects/data-structures/stack$ ./stack 2
 >> quit()
-gabrielmmoraes@pc:~/Projects/data_structures/stack$ 
+gabrielmmoraes@pc:~/Projects/data-structures/stack$ 
 ```
