@@ -26,7 +26,7 @@ uint8_t             commandArguments  [MAX_COMMANDS];
 
 // Defining functions
 
-void initTerminal(unsigned long int structureAddress){
+void init_terminal(unsigned long int structureAddress){
   char str[MAX_FUNCCALL_STR_SIZE];
   char command[MAX_COMMANDS_STR_SIZE];
   char argument[MAX_ARGUMENT_STR_SIZE];
@@ -65,13 +65,13 @@ void initTerminal(unsigned long int structureAddress){
     
     n = atoi(argument);
 
-    executeCommand(structureAddress, command, n);
+    execute_command(structureAddress, command, n);
 
     goto infinite_loop;
   }
 }
 
-void addCommand(unsigned long int funcAddress, char name[], uint8_t args){
+void add_command(unsigned long int funcAddress, char name[], uint8_t args){
   if(commandIndex <  MAX_COMMANDS){
 		commandAddress[commandIndex] = funcAddress;
 		strcpy(commandName[commandIndex], name);
@@ -81,13 +81,13 @@ void addCommand(unsigned long int funcAddress, char name[], uint8_t args){
 	else printf("The Commands array is full.\n");
 }
 
-void checkCommands(){
+void check_commands(){
 	for(uint8_t i=0; i<commandIndex;i++){
 		printf("Command %d:\n\tAddress: %lx\n\tName: %s\n\tNumber of Arguments: %d\n", i+1, commandAddress[i], commandName[i], commandArguments[i]);
 	} 
 }
 
-void executeCommand(unsigned long int structureAddress, char command[], int n){
+void execute_command(unsigned long int structureAddress, char command[], int n){
   if(!strcmp(command, "quit")) exit(0);
   
   for(uint8_t i=0; i<commandIndex; i++){
