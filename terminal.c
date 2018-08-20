@@ -8,28 +8,28 @@
 
 // Defining constants
 
-#define MAX_COMMANDS  10
-#define TRUE          1
-#define FALSE         0
+#define MAX_COMMANDS            10
+#define MAX_COMMANDS_STR_SIZE   15
+#define MAX_FUNCCALL_STR_SIZE   30
+#define MAX_ARGUMENT_STR_SIZE   10
 
 //////////////////////////////////////////////////////////////////////
 
 // Declaring variables
 
-uint8_t             commandIndex		          =				 0; 
-unsigned long int   commandAddress		[MAX_COMMANDS]    ;
-char                commandName			  [MAX_COMMANDS][15];
-uint8_t             commandArguments  [MAX_COMMANDS]    ;
+uint8_t             commandIndex		  = 0; 
+unsigned long int   commandAddress		[MAX_COMMANDS];
+char                commandName			  [MAX_COMMANDS][MAX_COMMANDS_STR_SIZE];
+uint8_t             commandArguments  [MAX_COMMANDS];
 
 //////////////////////////////////////////////////////////////////////
 
 // Defining functions
 
 void initTerminal(unsigned long int structureAddress){
-  char str[28];
-  char command[15];
-  char argument[10];
-  _Bool start_argument_declaration = FALSE;
+  char str[MAX_FUNCCALL_STR_SIZE];
+  char command[MAX_COMMANDS_STR_SIZE];
+  char argument[MAX_ARGUMENT_STR_SIZE];
 
   infinite_loop: {   
     uint8_t i = 0;
@@ -64,9 +64,8 @@ void initTerminal(unsigned long int structureAddress){
     }
     
     n = atoi(argument);
-    
-    execute_command:
-      executeCommand(structureAddress, command, n);
+
+    executeCommand(structureAddress, command, n);
 
     goto infinite_loop;
   }
