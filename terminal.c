@@ -8,7 +8,9 @@
 
 // Defining constants
 
-#define MAX_COMMANDS 10
+#define MAX_COMMANDS  10
+#define TRUE          1
+#define FALSE         0
 
 //////////////////////////////////////////////////////////////////////
 
@@ -27,30 +29,46 @@ void initTerminal(unsigned long int structureAddress){
   char str[28];
   char command[15];
   char argument[10];
+  _Bool start_argument_declaration = FALSE;
 
-  while(1){
+  infinite_loop: {   
+    uint8_t i = 0;
+    uint8_t j = 0;
+    int n = 0;
+
+    memset(command, 0, sizeof(command));
+    memset(argument, 0, sizeof(argument));
+
     printf(">> ");
     fgets(str, sizeof str, stdin);
-    
-    int i = 0;
-    int j = 0;
-    int n;
 
-    if(str[0] == '\n') continue;
+    if(str[0] == '\n') goto infinite_loop;
     
-  	while(str[i]!='(')  command[j++] = str[i++];
-    
+  	while(str[i]!='('){
+      if(str[i]=='\n'){
+        printf("Invalid command. Please call the function and its arguments using parenthesis.\n");
+        goto infinite_loop;
+      }  
+      command[j++] = str[i++];
+    }
+ 
    	i++;
     j = 0;
    
-    while(str[i]!=')')  argument[j++] = str[i++];
+    while(str[i]!=')'){
+      if(str[i]=='\n'){
+        printf("Invalid command. Please call the function and its arguments using parenthesis.\n");        
+        goto infinite_loop;
+      }
+      argument[j++] = str[i++];
+    }
     
     n = atoi(argument);
     
-    executeCommand(structureAddress, command, n);
-  
-    memset(command, 0, sizeof(command));
-    memset(argument, 0, sizeof(argument));
+    execute_command:
+      executeCommand(structureAddress, command, n);
+
+    goto infinite_loop;
   }
 }
 
