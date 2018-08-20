@@ -71,11 +71,11 @@ void init_terminal(unsigned long int structureAddress){
   }
 }
 
-void add_command(unsigned long int funcAddress, char name[], uint8_t args){
+void add_command(unsigned long int funcAddress, char name[], uint8_t n_args){
   if(commandIndex <  MAX_COMMANDS){
 		commandAddress[commandIndex] = funcAddress;
 		strcpy(commandName[commandIndex], name);
-		commandArguments[commandIndex] = args;
+		commandArguments[commandIndex] = n_args;
 		commandIndex++;
 	}
 	else printf("The Commands array is full.\n");
