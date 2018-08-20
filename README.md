@@ -19,6 +19,12 @@ git clone https://github.com/gabrielmmoraes/ds-terminal.git
 3. Create the Data Structure you want to manipulate and define a pointer to it.
 
 ```C
+typedef struct Stack {
+  unsigned int size;
+  int top;
+  int* buffer;
+}Stack;
+
 Stack* createStack(unsigned int size){
   Stack* stack = (Stack*) malloc(size * sizeof(Stack));
   stack->size = size;
@@ -28,7 +34,7 @@ Stack* createStack(unsigned int size){
 }
 
 int main(){
-  Stack* stack_pointer = createStack(size)
+  Stack* pointer_to_stack = createStack(size)
   return 0;
 }
 ```
@@ -59,7 +65,7 @@ void push(Stack* stack, int n){
 }
 
 int main(){
-  Stack* stack_pointer = createStack(size);
+  Stack* pointer_to_stack = createStack(size);
   
   // add_command((unsigned long int) func_pointer, call of the func inside terminal, num of arguments)
   add_command((unsigned long int) &pop, "pop", 0);
@@ -75,12 +81,12 @@ Obs.: Up until now you can only call functions of one int argument or none, so u
 
 ```C
 int main(){
-  Stack* stack_pointer = createStack(2);
+  Stack* pointer_to_stack = createStack(size);
   
   add_command((unsigned long int) &pop, "pop", 0); 
   add_command((unsigned long int) &pop, "push", 0); 
   
-  init_terminal(stack);
+  init_terminal(pointer_to_stack);
   
   return 0;
 }
