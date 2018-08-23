@@ -1,8 +1,8 @@
-#include  <stdio.h>
-#include  <stdlib.h>
-#include 	<stdint.h>
-#include	<string.h>
-#include  "terminal.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <string.h>
+#include "terminal.h"
 
 //////////////////////////////////////////////////////////////////////
 
@@ -17,10 +17,10 @@
 
 // Declaring variables
 
-uint8_t             commandIndex		  = 0; 
+uint8_t             commandIndex		= 0; 
 unsigned long int   commandAddress		[MAX_COMMANDS];
-char                commandName			  [MAX_COMMANDS][MAX_COMMANDS_STR_SIZE];
-uint8_t             commandArguments  [MAX_COMMANDS];
+char                commandName			[MAX_COMMANDS][MAX_COMMANDS_STR_SIZE];
+uint8_t             commandArguments	[MAX_COMMANDS];
 
 //////////////////////////////////////////////////////////////////////
 
