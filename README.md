@@ -19,57 +19,40 @@ git clone https://github.com/gabrielmmoraes/ds-terminal.git
 3. Create the Data Structure you want to manipulate and define a pointer to it.
 
 ```C
-typedef struct Stack {
-  unsigned int size;
-  int top;
-  int* buffer;
-}Stack;
+typedef struct DS {
+}DS;
 
-Stack* createStack(unsigned int size){
-  Stack* stack = (Stack*) malloc(size * sizeof(Stack));
-  stack->size = size;
-  stack->top = -1;
-  stack->buffer = (int*) malloc(size * sizeof(int));
+Stack* createDS(){
+  DS* ds = (DS*) malloc(size * sizeof(DS));
   return stack;
 }
 
 int main(){
-  Stack* pointer_to_stack = createStack(size)
+  DS* pointer_to_ds = createDS()
   return 0;
 }
 ```
 
-4. Use the add_command function to register the functions you want to use inside the terminal.
+5. Use the add_command function to register the functions you want to use inside the terminal. And then call the init_terminal function with a pointer to your Data Structure.
 
 ```C
-void pop(Stack* stack){
-  if (!empty(stack)){
-    printf("%d\n", stack->buffer[stack->top--]);
-    printStack(stack);
-    return;
-  }
+void pop(DS* ds){
+  printf("I'm the pop function\n");
+  return;
 
-  else printf("The stack is empty.\n");
+void push(DS* ds){
+  printf("I'm the push function\n");
   return;
 }
 
-void push(Stack* stack, int n){
-  if (stack->top == stack->size-1){
-    printf("The stack is full.\n");
-    return;
-  }
-  
-  stack->buffer[++stack->top] = n;
-  printStack(stack);
-  return; 
-}
-
 int main(){
-  Stack* pointer_to_stack = createStack(size);
+  DS* ds = createDs();
   
   // add_command((unsigned long int) func_pointer, call of the func inside terminal, num of arguments)
   add_command((unsigned long int) &pop, "pop", 0);
   add_command((unsigned long int) &pop, "push", 1);  
+  
+  init_terminal(pointer_to_ds);
   
   return 0;
 }
@@ -77,31 +60,14 @@ int main(){
 
 Obs.: Up until now you can only call functions of one int argument or none, so uint8_t n_args can only be 0 or 1 in value.
 
-5. Call init_terminal with the Data Structure pointer as an argument.
-
-```C
-int main(){
-  Stack* pointer_to_stack = createStack(size);
-  
-  add_command((unsigned long int) &pop, "pop", 0); 
-  add_command((unsigned long int) &pop, "push", 1); 
-  
-  init_terminal(pointer_to_stack);
-  
-  return 0;
-}
-```
-
-6. Compile terminal.c with your main.c source code.
+6. Compile terminal.c with your main.c source code and run the  executable (example running below can be checked [here](https://github.com/gabrielmmoraes/data-structures)).
 
 ```
 gcc /path/to/terminal.c main.c -o dsterminal
 ```
 
-7. Run the executable (example running below can be checked [here](https://github.com/gabrielmmoraes/data-structures)).
-
 ```
-gabrielmmoraes@pc:~/Projects/data-structures/stack$ ./stack 2
+gabrielmmoraes@pc:~/Projects/data-structures/stack$ ./stack
 >> push(3)
 [3]
 >> push(4)
@@ -114,14 +80,8 @@ The stack is full.
 >> pop()
 3
 []
+>> quit()         // Native function
+gabrielmmoraes@pc:~/Projects/data-structures/stack$
 ```
 
 Obs.: All function calls must have parenthesis, even if it does not need any argument.
-
-8. Exit with Ctrl+C or quit() command (native function).
-
-```
-gabrielmmoraes@pc:~/Projects/data-structures/stack$ ./stack 2
->> quit()
-gabrielmmoraes@pc:~/Projects/data-structures/stack$ 
-```
