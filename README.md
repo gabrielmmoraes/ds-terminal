@@ -22,9 +22,9 @@ git clone https://github.com/gabrielmmoraes/ds-terminal.git
 typedef struct DS {
 }DS;
 
-Stack* createDS(){
+DS* createDS(){
   DS* ds = (DS*) malloc(size * sizeof(DS));
-  return stack;
+  return ds;
 }
 
 int main(){
