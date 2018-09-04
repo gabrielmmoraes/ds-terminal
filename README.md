@@ -33,7 +33,7 @@ int main(){
 }
 ```
 
-5. Use the add_command function to register the functions you want to use inside the terminal. And then call the init_terminal function with a pointer to your Data Structure.
+4. Use the add_command function to register the functions you want to use inside the terminal. And then call the init_terminal function with a pointer to your Data Structure.
 
 ```C
 void pop(DS* ds){
@@ -60,7 +60,7 @@ int main(){
 
 Obs.: Up until now you can only call functions of one int argument or none, so uint8_t n_args can only be 0 or 1 in value.
 
-6. Compile terminal.c with your main.c source code and run the  executable (example running below can be checked [here](https://github.com/gabrielmmoraes/data-structures)).
+5. Compile terminal.c with your main.c source code and run the  executable (example running below can be checked [here](https://github.com/gabrielmmoraes/data-structures)).
 
 ```
 gcc /path/to/terminal.c main.c -o dsterminal
