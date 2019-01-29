@@ -17,9 +17,9 @@
 
 // Declaring variables
 
-uint8_t             commandIndex		= 0; 
+uint8_t             commandIndex		  = 0; 
 unsigned long int   commandAddress		[MAX_COMMANDS];
-char                commandName			[MAX_COMMANDS][MAX_COMMANDS_STR_SIZE];
+char                commandName			  [MAX_COMMANDS][MAX_COMMANDS_STR_SIZE];
 uint8_t             commandArguments	[MAX_COMMANDS];
 
 //////////////////////////////////////////////////////////////////////
@@ -46,6 +46,7 @@ void init_terminal(unsigned long int structureAddress){
     
   	while(str[i]!='('){
       if(str[i]=='\n'){
+        check_exit(command);
         printf("Invalid command. Please call the function and its arguments using parenthesis.\n");
         goto infinite_loop;
       }  
@@ -94,7 +95,7 @@ void check_commands(){
 }
 
 void execute_command(unsigned long int structureAddress, char command[], int n){
-  if(!strcmp(command, "quit")) exit(0);
+  check_exit(command);
   
   for(uint8_t i=0; i<commandIndex; i++){
     if(!strcmp(command, commandName[i])){
@@ -111,4 +112,8 @@ void execute_command(unsigned long int structureAddress, char command[], int n){
     } 
     else if (i == commandIndex-1) printf("Invalid command.\n");
   }
+}
+
+void check_exit(char* command){
+  if(!strcmp(command, "quit") || !strcmp(command, "exit")) exit(0);
 }
