@@ -71,14 +71,15 @@ void init_terminal(unsigned long int structureAddress){
   }
 }
 
-void add_command(unsigned long int funcAddress, char name[], uint8_t n_args){
+void add_command(void(*funcAddress)(), char name[], uint8_t n_args){
   if(n_args > 1){
     printf("\nERROR with \"%s\": Functions with more than one argument are not supported in this version.\n", name);
     printf("The function won't be added to the shell in order to prevent further errors.\n\n");
     return;
   }
+  
   if(commandIndex <  MAX_COMMANDS){
-		commandAddress[commandIndex] = funcAddress;
+		commandAddress[commandIndex] = (unsigned long int) funcAddress;
 		strcpy(commandName[commandIndex], name);
 		commandArguments[commandIndex] = n_args;
 		commandIndex++;
